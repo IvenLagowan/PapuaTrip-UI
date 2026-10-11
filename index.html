@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PapuaTrip | Jelajahi Keindahan Papua</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --primary: #087f5b;
+      --dark: #073b2c;
+      --gold: #f4b942;
+      --light: #f5f9f6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      scroll-behavior: smooth;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      padding: 18px 0;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+      transition: 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .navbar-brand {
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -1px;
+    }
+
+    .navbar-brand span {
+      color: var(--primary);
+    }
+
+    .logo-icon {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: white;
+      border-radius: 12px;
+      margin-right: 7px;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: #34483e;
+      margin: 0 5px;
+      transition: 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--primary);
+    }
+
+    .btn-booking {
+      background: var(--primary);
+      color: white;
+      padding: 12px 21px;
+      border-radius: 9px;
+      font-weight: 700;
+      border: 2px solid var(--primary);
+      transition: 0.3s;
+    }
+
+    .btn-booking:hover {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background:
+        linear-gradient(90deg,
+          rgba(3, 35, 25, 0.88),
+          rgba(3, 35, 25, 0.38)),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+      padding: 120px 0 90px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      padding: 9px 15px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: 1.12;
+      font-weight: 800;
+      max-width: 750px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 22px 0 30px;
+      color: #e7eee9;
+    }
+
+    .btn-explore {
+      background: var(--gold);
+      color: #172b20;
+      padding: 15px 25px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .btn-explore:hover {
+      background: white;
+      color: var(--dark);
+    }
+
+    .hero-info {
+      margin-top: 45px;
+      display: flex;
+      gap: 35px;
+      flex-wrap: wrap;
+    }
+
+    .hero-info strong {
+      display: block;
+      font-size: 23px;
+    }
+
+    .hero-info small {
+      color: #d5e2d9;
+    }
+
+    /* CONTENT */
+    .section-padding {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .destination-card {
+      border: none;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,.07);
+      height: 100%;
+      transition: .3s;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.12);
+    }
+
+    .destination-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .destination-card .card-body {
+      padding: 23px;
+    }
+
+    .destination-card h5 {
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .destination-card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    footer {
+      background: #062c21;
+      color: #d9e5dd;
+      padding: 35px 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        padding: 20px 0 10px;
+      }
+
+      .navbar-nav .nav-link {
+        padding: 11px 0;
+      }
+
+      .btn-booking {
+        display: inline-block;
+        margin-top: 12px;
+      }
+
+      .hero {
+        min-height: 570px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVIGASI -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <div class="container">
+
+    <a class="navbar-brand" href="#home">
+      <span class="logo-icon">
+        <i class="bi bi-airplane-engines-fill"></i>
+      </span>Papua<span>Trip</span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarMenu"
+      aria-controls="navbarMenu"
+      aria-expanded="false"
+      aria-label="Buka navigasi">
+      <i class="bi bi-list fs-2"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav mx-auto align-items-lg-center">
+
+        <li class="nav-item">
+          <a class="nav-link active" href="#home">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#destinasi"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            Destinasi
+          </a>
+          <ul class="dropdown-menu border-0 shadow">
+            <li><a class="dropdown-item" href="#baliem">Lembah Baliem</a></li>
+            <li><a class="dropdown-item" href="#raja-ampat">Raja Ampat</a></li>
+            <li><a class="dropdown-item" href="#sentani">Danau Sentani</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#paket">Paket Wisata</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#galeri">Galeri</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#tentang">Tentang Kami</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#kontak">Kontak</a>
+        </li>
+      </ul>
+
+      <a href="#booking" class="btn btn-booking">
+        <i class="bi bi-calendar-check me-2"></i>
+        Booking Sekarang
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO / HOME -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-label">
+      <i class="bi bi-geo-alt-fill me-2"></i>
+      Explore The Beauty of Papua
+    </div>
+
+    <h1>Jelajahi Keindahan <span>Papua</span> Bersama Kami</h1>
+
+    <p>
+      Temukan destinasi wisata menakjubkan, budaya lokal yang unik,
+      dan pengalaman perjalanan tak terlupakan bersama PapuaTrip.
+    </p>
+
+    <a href="#destinasi" class="btn-explore">
+      Jelajahi Destinasi
+      <i class="bi bi-arrow-right ms-2"></i>
+    </a>
+
+    <div class="hero-info">
+      <div>
+        <strong>50+</strong>
+        <small>Destinasi Wisata</small>
+      </div>
+      <div>
+        <strong>1.000+</strong>
+        <small>Wisatawan</small>
+      </div>
+      <div>
+        <strong>100%</strong>
+        <small>Pengalaman Berkesan</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINASI -->
+<section class="section-padding" id="destinasi">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="text-success fw-bold">DESTINASI PILIHAN</p>
+      <h2 class="section-title">Jelajahi Surga Papua</h2>
+      <p class="text-secondary">
+        Temukan keindahan alam dan budaya Papua.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4" id="baliem">
+        <div class="card destination-card">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
+               alt="Pegunungan Papua">
+          <div class="card-body">
+            <h5><i class="bi bi-geo-alt-fill text-success"></i>
+              Lembah Baliem</h5>
+            <p class="text-secondary">
+              Nikmati panorama pegunungan dan budaya masyarakat
+              Lembah Baliem di Wamena.
+            </p>
+            <a href="#booking">Lihat Paket <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4" id="raja-ampat">
+        <div class="card destination-card">
+          <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80"
+               alt="Wisata laut">
+          <div class="card-body">
+            <h5><i class="bi bi-geo-alt-fill text-success"></i>
+              Raja Ampat</h5>
+            <p class="text-secondary">
+              Jelajahi gugusan pulau, laut jernih, dan keindahan
+              bawah laut Papua Barat Daya.
+            </p>
+            <a href="#booking">Lihat Paket <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4" id="sentani">
+        <div class="card destination-card">
+          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80"
+               alt="Pemandangan danau">
+          <div class="card-body">
+            <h5><i class="bi bi-geo-alt-fill text-success"></i>
+              Danau Sentani</h5>
+            <p class="text-secondary">
+              Nikmati suasana danau yang indah dan kekayaan budaya
+              masyarakat sekitar Jayapura.
+            </p>
+            <a href="#booking">Lihat Paket <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PAKET WISATA -->
+<section class="section-padding bg-white" id="paket">
+  <div class="container text-center">
+    <p class="text-success fw-bold">PAKET PERJALANAN</p>
+    <h2 class="section-title mb-3">Paket Wisata PapuaTrip</h2>
+    <p class="text-secondary mb-4">
+      Pilih perjalanan yang sesuai dengan rencana liburan Anda.
+    </p>
+    <a href="#booking" class="btn btn-success px-4 py-3">
+      <i class="bi bi-calendar-check me-2"></i>Pesan Paket Wisata
+    </a>
+  </div>
+</section>
+
+<!-- GALERI -->
+<section class="section-padding" id="galeri">
+  <div class="container text-center">
+    <p class="text-success fw-bold">MOMEN PERJALANAN</p>
+    <h2 class="section-title">Galeri Wisata</h2>
+    <p class="text-secondary mt-3">
+      Dokumentasikan keindahan alam dan pengalaman perjalanan Anda.
+    </p>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section class="section-padding bg-white" id="tentang">
+  <div class="container text-center">
+    <p class="text-success fw-bold">TENTANG PAPUATRIP</p>
+    <h2 class="section-title">Partner Perjalanan Anda</h2>
+    <p class="text-secondary mx-auto mt-3" style="max-width:700px">
+      PapuaTrip adalah konsep platform perjalanan wisata untuk membantu
+      wisatawan mengenal destinasi, merencanakan perjalanan, dan
+      menemukan pengalaman wisata di Papua.
+    </p>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section-padding text-center" id="booking">
+  <div class="container">
+    <h2 class="section-title">Siap Menjelajahi Papua?</h2>
+    <p class="text-secondary my-3">
+      Hubungi tim kami untuk menanyakan paket dan jadwal perjalanan.
+    </p>
+    <!-- Ganti nomor dengan WhatsApp bisnis Anda -->
+    <a href="https://wa.me/6281234567890?text=Halo%20PapuaTrip%2C%20saya%20ingin%20bertanya%20tentang%20paket%20wisata."
+       target="_blank" rel="noopener noreferrer"
+       class="btn btn-booking">
+      <i class="bi bi-whatsapp me-2"></i>Hubungi via WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- KONTAK & FOOTER -->
+<footer id="kontak">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-6">
+        <h3 class="text-white fw-bold">
+          <i class="bi bi-airplane-engines-fill text-success"></i>
+          PapuaTrip
+        </h3>
+        <p class="mt-3">
+          Temukan petualangan, kenali budaya, dan jelajahi keindahan Papua.
+        </p>
+      </div>
+
+      <div class="col-md-3">
+        <h6 class="text-white">Navigasi</h6>
+        <p><a href="#home">Home</a></p>
+        <p><a href="#destinasi">Destinasi</a></p>
+        <p><a href="#paket">Paket Wisata</a></p>
+      </div>
+
+      <div class="col-md-3">
+        <h6 class="text-white">Kontak</h6>
+        <p><i class="bi bi-envelope me-2"></i>Email bisnis Anda</p>
+        <p><i class="bi bi-geo-alt me-2"></i>Papua, Indonesia</p>
+      </div>
+    </div>
+
+    <hr class="border-secondary">
+    <p class="text-center mb-0">
+      &copy; <span id="year"></span> PapuaTrip.
+      Jelajahi Papua, ciptakan kenangan.
+    </p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Efek navbar ketika halaman di-scroll
+  const navbar = document.getElementById("mainNavbar");
+
+  window.addEventListener("scroll", function () {
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+
+  // Tutup menu mobile setelah tautan diklik
+  document.querySelectorAll("#navbarMenu .nav-link:not(.dropdown-toggle)")
+    .forEach(function (link) {
+      link.addEventListener("click", function () {
+        const menu = document.getElementById("navbarMenu");
+        const instance = bootstrap.Collapse.getInstance(menu);
+
+        if (instance && window.innerWidth < 992) {
+          instance.hide();
+        }
+      });
+    });
+
+  // Tahun otomatis
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
